@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
 const MensajeFail = styled.p`
@@ -34,4 +35,9 @@ const Resultado = ({ cotizacion }) => {
 		</ResultadoCotizacion>
 	);
 };
+
+Resultado.propTypes = {
+	cotizacion: PropTypes.number.isRequired
+};
+
 export default Resultado;

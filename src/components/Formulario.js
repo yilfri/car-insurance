@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { obtenerDiferenciaYear, obtenerMarca, obtenerPlan } from '../helper';
 
@@ -51,7 +52,7 @@ const Error = styled.div`
 	margin-bottom: 2rem;
 `;
 
-const Formulario = ({ setResumen }) => {
+const Formulario = ({ setResumen, setCargando }) => {
 	// State para los datos.
 	const [datos, setDatos] = useState({
 		marca: '',
@@ -98,10 +99,19 @@ const Formulario = ({ setResumen }) => {
 
 		resultado = parseFloat(resultado * costoPlan).toFixed(2);
 
-		setResumen({
-			cotizacion: resultado,
-			datos
-		});
+		// Muestra el Spinner
+		setCargando(true);
+
+		setTimeout(() => {
+			// Elimina el Spinner
+			setCargando(false);
+
+			// Pasa los datos al componente principal.
+			setResumen({
+				cotizacion: Number(resultado),
+				datos
+			});
+		}, 2500);
 	};
 
 	return (
@@ -156,6 +166,11 @@ const Formulario = ({ setResumen }) => {
 			<Boton type="submit">Cotizar</Boton>
 		</form>
 	);
+};
+
+Formulario.propTypes = {
+	setResumen: PropTypes.func.isRequired,
+	setCargando: PropTypes.func.isRequired
 };
 
 export default Formulario;

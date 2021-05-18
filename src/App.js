@@ -5,6 +5,7 @@ import Resumen from './components/Resumen';
 import Resultado from './components/Resultado';
 
 import styled from '@emotion/styled';
+import Spinner from './components/Spinner';
 
 const Contenedor = styled.div`
 	max-width: 600px;
@@ -26,6 +27,8 @@ function App() {
 		}
 	});
 
+	const [cargando, setCargando] = useState(false);
+
 	const { cotizacion, datos } = resumen;
 
 	return (
@@ -33,11 +36,13 @@ function App() {
 			<Header titulo="Cotizador de Vehículos " />
 
 			<ContenedorFomulario>
-				<Formulario setResumen={setResumen} />
+				<Formulario setResumen={setResumen} setCargando={setCargando} />
+
+				{cargando ? <Spinner /> : null}
 
 				<Resumen datos={datos} />
 
-				<Resultado cotizacion={cotizacion} />
+				{!cargando ? <Resultado cotizacion={cotizacion} /> : null}
 			</ContenedorFomulario>
 		</Contenedor>
 	);

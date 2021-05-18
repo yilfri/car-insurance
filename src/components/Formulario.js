@@ -51,12 +51,12 @@ const Error = styled.div`
 	margin-bottom: 2rem;
 `;
 
-const Formulario = () => {
+const Formulario = ({ setResumen }) => {
 	// State para los datos.
 	const [datos, setDatos] = useState({
 		marca: '',
 		year: '',
-		plan: 'basico'
+		plan: ''
 	});
 	// State para el manejo del Error.
 	const [error, setError] = useState(false);
@@ -97,7 +97,11 @@ const Formulario = () => {
 		const costoPlan = obtenerPlan(plan);
 
 		resultado = parseFloat(resultado * costoPlan).toFixed(2);
-		console.log(resultado);
+
+		setResumen({
+			cotizacion: resultado,
+			datos
+		});
 	};
 
 	return (

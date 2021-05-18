@@ -27,3 +27,8 @@ export function obtenerMarca(marca) {
 export function obtenerPlan(plan) {
 	return plan === 'basico' ? 1.2 : 1.5;
 }
+
+// UpperCase a la primera letra.
+export function primerMayucula(texto) {
+	return texto.charAt(0).toUpperCase() + texto.slice(1);
+}

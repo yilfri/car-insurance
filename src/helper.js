@@ -1,7 +1,9 @@
+// Calcula la diferencia de años.
 export function obtenerDiferenciaYear(year) {
 	return new Date().getFullYear() - year;
 }
 
+// Calcula el total a pagar según la marca
 export function obtenerMarca(marca) {
 	let incremento;
 
@@ -19,4 +21,9 @@ export function obtenerMarca(marca) {
 			break;
 	}
 	return incremento;
+}
+
+// Calcular el tipo de seguro.
+export function obtenerPlan(plan) {
+	return plan === 'basico' ? 1.2 : 1.5;
 }
